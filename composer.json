@@ -1,0 +1,33 @@
+{
+    "name": "bitgrave/persona-bundle",
+    "type": "symfony-bundle",
+    "description": "Integrate mozilla persona authentification service into your Symfony2 application.",
+    "keywords": ["persona"],
+    "homepage": "http://bitgrave.github.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":"Patrick Paechnatz",
+            "email":"patrick.paechnatz@gmail.com",
+            "homepage":"http://www.bitgrave.net/"
+        },
+        {
+            "name": "bitgrave Community",
+            "homepage": "https://github.com/bitgrave/BGPersonaBundle/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1,<2.3-dev",
+        "symfony/security-bundle": ">=2.1,<2.3-dev",
+        "symfony/twig-bundle": ">=2.1,<2.3-dev",
+        "facebook/php-sdk": "dev-master"
+    },
+
+    "autoload": {
+        "psr-0": { "BG\\PersonaBundle": "" }
+    },
+
+    "target-dir": "BG/PersonaBundle"
+}

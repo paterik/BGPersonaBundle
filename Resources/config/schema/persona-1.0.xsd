@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsd:schema xmlns="http://symfony.com/schema/dic/bg_persona"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://symfony.com/schema/dic/bg_persona"
+    elementFormDefault="qualified">
+
+    <xsd:element name="config" type="config" />
+
+    <xsd:complexType name="config">
+        <xsd:attribute name="verifier_url" type="xsd:string" />
+        <xsd:attribute name="audience_url" type="xsd:string" />
+        <xsd:attribute name="class" type="xsd:string" />
+        <xsd:attribute name="logging" type="xsd:boolean" />
+        <xsd:attribute name="culture" type="xsd:string" />
+        <xsd:attribute name="permissions" type="permissions" />
+    </xsd:complexType>
+
+    <xsd:complexType name="permissions">
+        <xsd:sequence>
+            <xsd:element name="permission" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

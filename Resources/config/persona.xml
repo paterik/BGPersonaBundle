@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="bg_persona.verifier_url">https://browserid.org/verify</parameter>
+        <parameter key="bg_persona.audience_url">%webapp_url_ssl%:443</parameter>
+        <parameter key="bg_persona.service.class">BG\PersonaBundle\Services\BasePersona</parameter>
+        <parameter key="bg_persona.twig.class">BG\PersonaBundle\Twig\PersonaExtension</parameter>
+        <parameter key="bg_persona.helper.class">BG\PersonaBundle\Templating\Helper\PersonaHelper</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="bg_persona.service" class="%bg_persona.service.class%">
+            <argument key="verifier_url">%bg_persona.verifier_url%</argument>
+            <argument key="audience_url">%bg_persona.audience_url%</argument>
+            <argument type="service" id="session" />
+        </service>
+
+        <service id="bg_persona.helper" class="%bg_persona.helper.class%">
+            <argument type="service" id="templating" />
+            <argument>%bg_persona.logging%</argument>
+            <argument>%bg_persona.culture%</argument>
+            <argument>%bg_persona.permissions%</argument>
+            <tag name="templating.helper" alias="persona" />
+        </service>
+
+        <service id="bg_persona.twig" class="%bg_persona.twig.class%">
+            <argument type="service" id="service_container" />
+            <tag name="twig.extension" />
+        </service>
+
+    </services>
+
+</container>
