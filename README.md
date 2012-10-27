@@ -88,12 +88,20 @@ Installation
                 check_path: /persona_login_check
 ```
 
-  5. add routin for persona logincheck handler
+  5. add routing for persona logincheck handler
 ```
   # application/config/routing.yml
   _persona_security_check:
         pattern:   /persona_login_check
 ```
+
+  6. add a persona host ident configuration inside your parameters.yml
+  ```
+  # application/config/parameters.yml
+  webapp_url:         http://www.example.com
+  webapp_url_ssl:     https://www.example.com
+  ```
+
 
 Include the persona login button in your templates
 --------------------------------------------------
