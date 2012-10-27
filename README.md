@@ -88,6 +88,13 @@ Installation
                 check_path: /persona_login_check
 ```
 
+  5. add routin for persona logincheck handler
+```
+  # application/config/routing.yml
+  _persona_security_check:
+        pattern:   /persona_login_check
+```
+
 Include the persona login button in your templates
 --------------------------------------------------
 add the following code in your login template (thats a twig sample):
