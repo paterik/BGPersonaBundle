@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Introduction
 ============
 
@@ -435,13 +434,3 @@ class User extends BaseUser
 ```
 
 on any open questions or problems feel free to contact me directly or just open an issue ...
-=======
-BGPersonaBundle
-===============
-
-old code repository for persona authentication symfony2 bundle
-this project was transfered to source bundle developer repository
-https://github.com/paterik/BGPersonaBundle . this bundle will also
-be updated and maintained by paterik during the next month ...
-
->>>>>>> 0f8e72711b5735cb2159732290641a04975e39ba
