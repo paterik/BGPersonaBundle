@@ -11,7 +11,11 @@ Note that logging in a user requires 3 steps:
 
   1. the user must have a valid personal authentification account
   2. you have to trigger the symfony2 login
-  3. Add the persona login button twig helper inside your login.html.twig template
+  3. add the persona login button (twig helper) inside your login.html.twig
+     template or any other place you like
+
+In our example code lines below we'll presume the our local webserver is reachable under
+http://dev.example.com. please change this domain by our development base server here.
 
 further information about persona verifaction api can be found on
 https://developer.mozilla.org/de/docs/persona
@@ -59,20 +63,13 @@ Installation
   # application/config/config.yml
   bg_persona:
         verifier_url: 'https://verifier.login.persona.org/verify'
-        audience_url: %webapp_url_ssl%:443
+        audience_url: 'dev.example.com'
+
 ```
 
-  4.1. If you want to use `security component` add this configuration:
-```
-  # application/config/config.yml
-  bg_persona:
-        default_target_path: /
-        provider: my_persona.persona_provider
-        login_path: /login
-        check_path: /persona_login_check
-```
+  4.1. If you want to use `security component` add this configuration and define a custom user provider class,
+  use it as provider or define login path (you can replace the given name my_persona.persona_provider by any other (distinct) one)
 
-  4.2. define a custom user provider class and use it as provider or define login path
 ```
   # application/config/config.yml
   security:
@@ -88,24 +85,42 @@ Installation
                 check_path: /persona_login_check
 ```
 
-  5. add routing for persona logincheck handler
+  5. add routing for persona logincheck handler.
 ```
   # application/config/routing.yml
   _persona_security_check:
         pattern:   /persona_login_check
 ```
 
-  6. add a persona host ident configuration inside your parameters.yml
+  6. (optional) add persona host-ident configuration inside your parameters.yml
+  this step is not really necessary, you can place your host identification under config.yml/bg_persona_
   ```
   # application/config/parameters.yml
   webapp_url:         http://www.example.com
   webapp_url_ssl:     https://www.example.com
   ```
 
+  7. place this dummy controller inside your LoginController file. this code presume you've sendio FrameworkExtraBundle
+  installed and implemented (Route and Template module), if not setup person routing (/persona_login_check) inside your
+  default routing.yml file.
+  ```
+  /**
+   * persona logincheck dummy controller.
+   *
+   * @Route("/persona_login_check")
+   * @Template
+   *
+   * */
+  public function personaLoginCheckAction()
+  {
+      return array();
+  }
+
+  ```
 
 Include the persona login button in your templates
 --------------------------------------------------
-add the following code in your login template (thats a twig sample):
+add the following code in your login template (thats a twig sample for persona CSS3 button):
 ```
 <!-- inside your login twig template -->
 {{ persona_login_button() }}
@@ -417,3 +432,5 @@ class User extends BaseUser
     }
 }
 ```
+
+on any open questions or problems feel free to contact me directly or just open an issue ...
