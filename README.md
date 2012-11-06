@@ -91,7 +91,7 @@ Installation
                 check_path: /persona_login_check
 ```
 
-  5. add routing for persona logincheck handler.
+  5 - add routing for persona logincheck handler.
 
 ```
   # application/config/routing.yml
@@ -99,7 +99,7 @@ Installation
         pattern:   /persona_login_check
 ```
 
-  6. (optional) add persona host-ident configuration inside your parameters.yml
+  6 - (optional) add persona host-ident configuration inside your parameters.yml
   this step is not really necessary, you can place your host identification in config.yml (_bg_persona:)
 
 ```
@@ -108,7 +108,7 @@ Installation
   webapp_url_ssl:     https://www.example.com
 ```
 
-  7. place this dummy controller inside your LoginController file. this code presume you've sendio FrameworkExtraBundle
+  7 - place this dummy controller inside your LoginController file. this code presume you've sendio FrameworkExtraBundle
   installed and implemented (Route and Template module), if not setup person routing (/persona_login_check) inside your
   default routing.yml file.
 
