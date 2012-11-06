@@ -33,7 +33,7 @@ This version requires Symfony 2.1
 Installation
 ============
 
-  1. Add the following lines in your composer.json:
+  1 - Add the following lines in your composer.json:
 
 ```
 {
@@ -43,13 +43,13 @@ Installation
 }
 ```
 
-  2. Run the composer to download the bundle
+  2 - Run the composer to download the bundle
 
 ```
     $ php composer.phar update bitgrave/persona-bundle
 ```
 
-  3. Add this bundle to your application's kernel:
+  3 - Add this bundle to your application's kernel:
 
 ```
       // app/ApplicationKernel.php
@@ -63,7 +63,7 @@ Installation
       }
 ```
 
-  4. Configure the `persona` service in your config:
+  4 - Configure the `persona` service in your config:
 
 ```
   # application/config/config.yml
