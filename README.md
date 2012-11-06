@@ -447,6 +447,20 @@ class User extends BaseUser
 }
 ```
 
+How To Contribute
+=================
+
+To contribute changes, fixes, additions/features please open a pull request with your new code.
+please take not, that if you add new features or modify existing ones you have to doc this in
+projects README file (also update projects CHANGELOG file!)
+
+License
+=======
+
+See: resources/meta/LICENSE.md
+
+Credits
+=======
 
 The bundle structure and documentation partially based on FOSFacebookBundle by FriendsOfSymfony
 on any open questions or problems feel free to contact me directly or just open an issue ...
