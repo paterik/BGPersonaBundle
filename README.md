@@ -34,6 +34,7 @@ Installation
 ============
 
   1. Add the following lines in your composer.json:
+
 ```
 {
     "require": {
@@ -41,11 +42,15 @@ Installation
     }
 }
 ```
+
   2. Run the composer to download the bundle
+
 ```
     $ php composer.phar update bitgrave/persona-bundle
 ```
+
   3. Add this bundle to your application's kernel:
+
 ```
       // app/ApplicationKernel.php
       public function registerBundles()
@@ -57,16 +62,20 @@ Installation
           );
       }
 ```
+
   4. Configure the `persona` service in your config:
+
 ```
   # application/config/config.yml
   bg_persona:
         verifier_url: 'https://verifier.login.persona.org/verify'
         audience_url: 'dev.example.com'
-
 ```
+
   4.1. If you want to use `security component` add this configuration and define a custom user provider class,
-  use it as provider or define login path (you can replace the given name my_persona.persona_provider by any other (distinct) one)
+  use it as provider or define login path (you can replace the given name my_persona.persona_provider by any
+  other (distinct) one) ...
+
 ```
   # application/config/config.yml
   security:
@@ -81,41 +90,47 @@ Installation
                 login_path: /login
                 check_path: /persona_login_check
 ```
+
   5. add routing for persona logincheck handler.
+
 ```
   # application/config/routing.yml
   _persona_security_check:
         pattern:   /persona_login_check
 ```
+
   6. (optional) add persona host-ident configuration inside your parameters.yml
-  this step is not really necessary, you can place your host identification under config.yml/bg_persona_
-  ```
+  this step is not really necessary, you can place your host identification in config.yml (_bg_persona:)
+
+```
   # application/config/parameters.yml
   webapp_url:         http://www.example.com
   webapp_url_ssl:     https://www.example.com
-  ```
+```
 
   7. place this dummy controller inside your LoginController file. this code presume you've sendio FrameworkExtraBundle
   installed and implemented (Route and Template module), if not setup person routing (/persona_login_check) inside your
   default routing.yml file.
-  ```
-  /**
-   * persona logincheck dummy controller.
-   *
-   * @Route("/persona_login_check")
-   * @Template
-   *
-   * */
-  public function personaLoginCheckAction()
-  {
-      return array();
-  }
 
-  ```
+```
+/**
+ * persona logincheck dummy controller.
+ *
+ * @Route("/persona_login_check")
+ * @Template
+ *
+ * */
+public function personaLoginCheckAction()
+{
+    return array();
+}
+
+```
 
 Include the persona login button in your templates
 --------------------------------------------------
 add the following code in your login template (thats a twig sample for persona CSS3 button):
+
 ```
 <!-- inside your login twig template -->
 {{ persona_login_button() }}
@@ -125,6 +140,7 @@ Example Custom User Provider using the BG\PersonaBundle
 -------------------------------------------------------
 This requires adding a service for the custom user provider which is then set
 to the provider id in the "provider" section in the config.yml:
+
 ```
 my_persona.persona.user:
     class: Nmq\UserBundle\Security\User\Provider\PersonaProvider
@@ -135,6 +151,8 @@ my_persona.persona.user:
         session: "@session"
         container: "@service_container"
 ```
+
+The Custom User Provider Class:
 
 ```
 <?php
@@ -224,6 +242,7 @@ class PersonaProvider implements UserProviderInterface
 Finally one also needs to add a getPersonaId() and setPersonaId() method to the User model.
 take note that field placements firstname and lastname not realy neccesary for our persona
 bundle implementation. The following example using the Doctrine ORM + FOSUserBundle:
+
 ```
 <?php
 namespace Acme\MyBundle\Entity;
@@ -427,6 +446,7 @@ class User extends BaseUser
     }
 }
 ```
+
 
 The bundle structure and documentation partially based on FOSFacebookBundle by FriendsOfSymfony
 on any open questions or problems feel free to contact me directly or just open an issue ...
