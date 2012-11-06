@@ -45,7 +45,6 @@ Installation
 ```
     $ php composer.phar update bitgrave/persona-bundle
 ```
-
   3. Add this bundle to your application's kernel:
 ```
       // app/ApplicationKernel.php
@@ -66,10 +65,8 @@ Installation
         audience_url: 'dev.example.com'
 
 ```
-
   4.1. If you want to use `security component` add this configuration and define a custom user provider class,
   use it as provider or define login path (you can replace the given name my_persona.persona_provider by any other (distinct) one)
-
 ```
   # application/config/config.yml
   security:
@@ -84,14 +81,12 @@ Installation
                 login_path: /login
                 check_path: /persona_login_check
 ```
-
   5. add routing for persona logincheck handler.
 ```
   # application/config/routing.yml
   _persona_security_check:
         pattern:   /persona_login_check
 ```
-
   6. (optional) add persona host-ident configuration inside your parameters.yml
   this step is not really necessary, you can place your host identification under config.yml/bg_persona_
   ```
@@ -254,7 +249,7 @@ class User extends BaseUser
      */
     protected $id;
 
-    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////
 
 
     /**
@@ -359,7 +354,7 @@ class User extends BaseUser
 
 
 
-    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////
 
     /**
      * Set lastname value for user
@@ -396,7 +391,7 @@ class User extends BaseUser
     }
 
 
-    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////
 
     /***
      * Set users personaId
@@ -422,7 +417,7 @@ class User extends BaseUser
         return $this->getFirstName() . ' ' . $this->getLastname();
     }
 
-    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////
 
 
     public function __construct()
@@ -433,4 +428,5 @@ class User extends BaseUser
 }
 ```
 
+The bundle structure and documentation partially based on FOSFacebookBundle by FriendsOfSymfony
 on any open questions or problems feel free to contact me directly or just open an issue ...
