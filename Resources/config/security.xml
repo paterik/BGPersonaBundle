@@ -16,5 +16,9 @@
                  abstract="true">
         </service>
 
+        <service id="bg_persona.logout_handler" class="BG\PersonaBundle\Security\Logout\PersonaHandler" public="false">
+            <argument type="service" id="bg_persona.service" />
+        </service>
+
     </services>
 </container>

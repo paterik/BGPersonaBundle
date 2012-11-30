@@ -32,6 +32,13 @@ class BasePersona
 
     public function getAccessToken($user = null)
     {
+
+        // check for installed curl php extension
+        if  (!in_array('curl', get_loaded_extensions()))
+        {
+            throw new \RuntimeException('php curl extension not found inside your loaded php extensions, please install this module otherwise this bundle won\'t work!');
+        }
+
         $this->assertion['audience'] = urlencode($this->audience_url);
         if (isset($_POST['assertion'])&&($_POST['assertion'])) $this->assertion['assertion'] = $_POST['assertion'];
 

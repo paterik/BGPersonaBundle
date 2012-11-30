@@ -2,10 +2,14 @@
 
 <script type="text/javascript">
 
-    var currentUser = null;
-    {% if is_granted("ROLE") %}
-    currentUser = '{{ app.user.email }}';
-    {% endif %}
+    if (window.localStorage.getItem('email_login'))
+    {
+        var currentUser = window.localStorage.getItem('email_login');
+    }
+    else
+    {
+        var currentUser = null;
+    }
 
     navigator.id.watch({
         loggedInUser: currentUser,
@@ -16,13 +20,14 @@
             // 2. Update your UI.
             $.ajax({ /* <-- This example uses jQuery, but you can use whatever you'd like */
                 type: 'POST',
-                url: 'persona_login_check', // This is a URL on your website.
+                url: 'persona_login_check',
                 data: {assertion: assertion},
                 success: function(res, status, xhr)
                 {
-                    window.location.reload();
-                },
-                error: function(res, status, xhr) { alert("BrowserID Service Unavailable"); }
+                    console.log(res.email);
+                    window.localStorage.setItem('email_login',res.email);
+                    window.location.href = 'persona_login_landingpage';
+                },  error: function(res, status, xhr) { alert("BrowserID Service Unavailable"); }
             });
         },
         onlogout: function() {
@@ -32,12 +37,15 @@
             // (That's a literal JavaScript null. Not false, 0, or undefined. null.)
             $.ajax({
                 type: 'POST',
-                url: 'logout', // This is a URL on your website.
-                success: function(res, status, xhr) { window.location.reload(); },
-                error: function(res, status, xhr) { alert("logout failure" + res); }
+                url: 'logout',
+                success: function(res, status, xhr)
+                {
+                    currentUser = null;
+                    window.localStorage.removeItem('email_login');
+                    window.location.href = 'persona_logout_landingpage';
+                    //window.location.reload();
+                },  error: function(res, status, xhr) { alert("logout failure" + res); }
             });
         }
     });
 </script>
-
-

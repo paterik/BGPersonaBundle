@@ -1,1 +1,5 @@
-<a href="#" id="#persona-signin" class="persona-button orange" onclick="navigator.id.request();"><span>Sign in with your Email</span></a>
+{% if app.security.isGranted('IS_AUTHENTICATED_FULLY') %}
+    <p>Hello {{app.security.getToken().getUser().getEmail()}}</p><p><a id="signout" class="persona-button dark" href="#" onclick="navigator.id.logout();"><span>Logout</span></a></p>
+{% else %}
+    <a href="#" id="#signin" class="persona-button orange" onclick="navigator.id.request();"><span>Sign in with your Email</span></a>
+{% endif %}
