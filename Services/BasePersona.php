@@ -42,7 +42,7 @@ class BasePersona
         $this->assertion['audience'] = urlencode($this->audience_url);
         if (isset($_POST['assertion'])&&($_POST['assertion'])) $this->assertion['assertion'] = $_POST['assertion'];
 
-        $verifier_token = json_decode($this->__verifierPost($this->verifier_url, $this->assertion)); // 'https://browserid.org/verify'
+        $verifier_token = json_decode($this->__verifierPost($this->verifier_url, $this->assertion)); // 'https://verifier.login.persona.org/verify'
         if ($verifier_token && $verifier_token->status === 'okay')
         {
             // temporary save the access token values ...
